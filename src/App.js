@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useSelector } from "react-redux";
+import Product from "./Components/Product";
+import AddProduct from "./Components/AddProduct";
+import Header from "./Components/Header";
 
 function App() {
+  const products = useSelector((state) => state.products.products);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <AddProduct />
+      <h1>products</h1>
+      <div className="products-container">
+        {products.map((product) => (
+          <Product key={product.id} details={product} />
+        ))}
+      </div>
     </div>
   );
 }
